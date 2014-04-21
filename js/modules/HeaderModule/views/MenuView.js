@@ -22,7 +22,7 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 				current = location !== undefined && location === "right" ? right : left;
 				
 			if (modelRoot !== undefined && modelRoot !== null) {
-				var root = root.toLowerCase().replace("/ /g", "-"),
+				var root = modelRoot.toLowerCase().replace("/ /g", "-"),
 					el = current.find("#menu-group-"+root);
 
 				if (el.length === 0) {
