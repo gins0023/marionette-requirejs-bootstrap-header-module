@@ -17,10 +17,12 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 		appendHtml: function(collectionView, itemView, index) {
 			var left = $(this.el).find(".navbar-left"),
 				right = $(this.el).find(".navbar-right"),
-				current = itemView.model.get("location") !== undefined && itemView.model.get("location") === "right" ? right : left;
+				modelRoot = itemView.model.get("root"),
+				location = itemView.model.get("location"),
+				current = location !== undefined && location === "right" ? right : left;
 				
-			if (itemView.model.get("root") !== undefined) {
-				var root = itemView.model.get("root").toLowerCase().replace("/ /g", "-"),
+			if (modelRoot !== undefined && modelRoot !== null) {
+				var root = root.toLowerCase().replace("/ /g", "-"),
 					el = current.find("#menu-group-"+root);
 
 				if (el.length === 0) {
@@ -31,7 +33,7 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 			}
 
 			current.append(itemView.el);
-		}
+		}	
 	});
 
 	return MenuView;
