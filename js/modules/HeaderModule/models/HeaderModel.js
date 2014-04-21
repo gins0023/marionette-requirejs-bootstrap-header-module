@@ -5,6 +5,10 @@ define(['backbone', 'marionette', 'models/BaseModel'], function(Backbone, Marion
 
 			var selectable = new Backbone.Picky.Selectable(this);
 			_.extend(this, selectable);
+		},
+	        defaults: {
+			uri: '',
+	       		name: ''
 		}
 	});
 });
