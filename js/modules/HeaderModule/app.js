@@ -60,8 +60,10 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 		/**
 		 * Grab Menu Items 
 		 */
-		Header.addInitializer(function() {
-			this.collection = new Collection();
+		Header.addInitializer(function(options) {
+			var menuUrl = options.menuUrl !== undefined ? options.menuUrl : '';
+			
+			this.collection = new Collection({url: options.menuUrl});
 			this.controller = new Header.Controller();
 			this.collection.fetch();
 		});
