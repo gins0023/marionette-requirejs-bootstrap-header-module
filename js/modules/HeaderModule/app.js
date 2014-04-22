@@ -1,5 +1,5 @@
 define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/HeaderCollection"], function($, Backbone, Marionette, App, Collection) {
-	return App.module("Header", function(Header, App) {
+	return App.module("Header", function(Header, App, data) {
 		/**
 		 * Start With Default Header Variables
 		 */
@@ -21,15 +21,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 					App[Header.appRegion].show(headers);
 
 					headers.on("itemview:navigate", function(childView, model) {
-						/**
-						 * Trigger any custom events and send default event
-						 * from the uri with navigate: as prefix
-						 */
-						if (model.get('navigationTrigger') !== undefined) {
-							App.trigger(model.get('navigationTrigger'));
-						}
-						App.trigger('navigate:'+ model.get('uri'));
-						App.trigger('navigate:navigate', model);
+						Header.controller.triggerEvents(model);
 
 						/**
 						 * Remove active class on all dropdowns
@@ -41,7 +33,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 						 */
 						model.select();
 						model.collection.trigger('reset');
-					});
+					}, this);
 
 				});
 			},
@@ -54,9 +46,22 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 				});
 
 				if (headerToSelect !== undefined) {
+					this.triggerEvents(headerToSelect);
 					headerToSelect.select();
 					headerToSelect.collection.trigger("reset");
 				}
+
+			},
+			triggerEvents: function(model) {
+				/**
+				 * Trigger any custom events and send default event
+				 * from the uri with navigate: as prefix
+				 */
+				if (model.get('navigationTrigger') !== undefined) {
+					App.trigger(model.get('navigationTrigger'));
+				}
+				App.trigger('navigate:'+ model.get('uri'));
+				App.trigger('navigate:navigate', model);
 			}
 		});
 
@@ -76,7 +81,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 		 * and menu items loaded.
 		 */
 		Header.on("start", function() {
-			$.when(Header.collection.fetch()).done(function() {
+			$.when(Header.collection.fetch()).then(function() {
 				Header.controller.listHeader();
 				Header.controller.setActiveHeader(Backbone.history.fragment);
 			});
