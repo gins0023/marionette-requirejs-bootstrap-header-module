@@ -15,12 +15,6 @@ define(["backbone", "marionette", "HeaderModule/app", "tpl!HeaderModule/template
 		 */
 		onRender: function() {
 			if (this.model.selected) {
-				if (this.model.get("root") !== undefined) {
-					var root = this.model.get("root").toLowerCase().replace("/ /g", "-"),
-						el = $("#menu-group-"+root);
-
-					el.addClass("active");
-				}
 				this.$el.addClass("active");
 			}
 		}

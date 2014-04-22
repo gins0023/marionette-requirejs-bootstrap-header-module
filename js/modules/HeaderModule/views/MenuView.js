@@ -20,6 +20,11 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 				modelRoot = itemView.model.get("root"),
 				location = itemView.model.get("location"),
 				current = location !== undefined && location === "right" ? right : left;
+
+			if (index === 0) {
+				left.html('');
+				right.html('');
+			}
 				
 			if (modelRoot !== undefined && modelRoot !== null) {
 				var root = modelRoot.toLowerCase().replace("/ /g", "-"),
@@ -33,6 +38,10 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 			}
 
 			current.append(itemView.el);
+
+			if (itemView.model.selected && modelRoot !== undefined && modelRoot !== null) {
+				current.parent().addClass('active');
+			}
 		}	
 	});
 
