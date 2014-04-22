@@ -2,7 +2,7 @@ define(['backbone', 'marionette', 'collections/BaseCollection', 'HeaderModule/mo
 
 	return BaseCollection.extend({
 		model: HeaderModel,
-		initialize: function(options) {
+		initialize: function(models, options) {
 			BaseCollection.prototype.initialize.call(this, options);
 			this.url = options.url !== undefined ? options.url : '';
 
