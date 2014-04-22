@@ -29,6 +29,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 							App.trigger(model.get('navigationTrigger'));
 						}
 						App.trigger('navigate:'+ model.get('uri'));
+						App.trigger('navigate:navigate', model);
 
 						/**
 						 * Remove active class on all dropdowns
@@ -39,7 +40,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 						 * Mark current model in collection as selected
 						 */
 						model.select();
-						model.collection.trigger("reset");
+						model.collection.trigger('reset');
 					});
 
 				});
@@ -52,27 +53,34 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 					return header.get('uri') === uri;
 				});
 
-				headerToSelect.select();
-				Header.collection.trigger("reset");
+				if (headerToSelect !== undefined) {
+					headerToSelect.select();
+					headerToSelect.collection.trigger("reset");
+				}
 			}
 		});
 
 		/**
-		 * Grab Menu Items 
+		 * Create collection with menu url from app 
 		 */
 		Header.addInitializer(function(options) {
-			var menuUrl = options.menuUrl !== undefined ? options.menuUrl : '';
-			
-			this.collection = new Collection({url: options.menuUrl});
+			_.extend(this, options);
+			this.collection = new Collection([], {
+				url: this.menuUrl
+			});
 			this.controller = new Header.Controller();
-			this.collection.fetch();
 		});
 
 		/**
-		 * List headers when module is started.
+		 * List headers when module is started 
+		 * and menu items loaded.
 		 */
 		Header.on("start", function() {
-			Header.controller.listHeader();
+			$.when(Header.collection.fetch()).done(function() {
+				Header.controller.listHeader();
+				Header.controller.setActiveHeader(Backbone.history.fragment);
+			});
+			
 		});
 
 		/**
