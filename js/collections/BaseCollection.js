@@ -17,7 +17,7 @@ define(['backbone', 'marionette', 'app'], function(Backbone, Marionette, App) {
 			if (useStubData !== false && stubPath !== false && stubFilename !== false) {
 				var collection = this;
 
-				$.ajax({
+				var xhr = $.ajax({
 					type: "GET",
 					dataType: "json",
 					url: stubPath + '/collections/' + stubFilename + '.json',
@@ -25,11 +25,11 @@ define(['backbone', 'marionette', 'app'], function(Backbone, Marionette, App) {
 						collection.reset(data);
 					}
 				});
-			
-				return;
+				
+				return xhr;
 			}
 
-			Backbone.Collection.prototype.fetch.call(this, options);
+			return Backbone.Collection.prototype.fetch.call(this, options);
 
 
 		}
