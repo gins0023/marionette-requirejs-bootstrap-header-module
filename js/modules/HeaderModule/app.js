@@ -6,6 +6,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 		_.extend(Header, {
 			startWithParent: false,
 			appRegion: 'headerRegion',
+			activeHeaderModel: null
 		});
 
 		Header.navigate = function(route, options) {
@@ -53,6 +54,11 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 
 			},
 			triggerEvents: function(model) {
+				//Don't fire event if same nav element clicked
+				if (this.activeHeaderModel !== null && this.activeHeaderModel === model) {
+					return;
+				}
+
 				/**
 				 * Trigger any custom events and send default event
 				 * from the uri with navigate: as prefix
@@ -62,6 +68,8 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 				}
 				App.trigger('navigate:'+ model.get('uri'));
 				App.trigger('navigate:navigate', model);
+
+				this.activeHeaderModel = model;
 			}
 		});
 
