@@ -1,3 +1,4 @@
+/*global define */
 define(['backbone', 'marionette', 'models/BaseModel'], function(Backbone, Marionette, BaseModel) {
 	return BaseModel.extend({
 		initialize: function(options) {

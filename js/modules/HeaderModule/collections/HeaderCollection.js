@@ -1,3 +1,4 @@
+/*global define */
 define(['backbone', 'marionette', 'collections/BaseCollection', 'HeaderModule/models/HeaderModel', 'backbone.picky'], function(Backbone, Marionette, BaseCollection, HeaderModel) {
 
 	return BaseCollection.extend({
