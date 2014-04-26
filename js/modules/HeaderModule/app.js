@@ -1,3 +1,4 @@
+/*global define */
 define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/HeaderCollection"], function($, Backbone, Marionette, App, Collection) {
 	return App.module("Header", function(Header, App, data) {
 		/**

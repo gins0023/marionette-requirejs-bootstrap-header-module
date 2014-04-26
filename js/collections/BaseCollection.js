@@ -1,3 +1,4 @@
+/*global define */
 define(['backbone', 'marionette', 'app'], function(Backbone, Marionette, App) {
 	return Backbone.Collection.extend({
 		initialize: function(options) {},

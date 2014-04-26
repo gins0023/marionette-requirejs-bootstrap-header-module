@@ -1,3 +1,4 @@
+/*global define */
 define(["backbone", "marionette", "HeaderModule/app", "tpl!HeaderModule/templates/menuItemTemplate.html"], function(Backbone, Marionette, HeaderApp, menuItemTemplate) {
 	var MenuView = Backbone.Marionette.ItemView.extend({
 		template: menuItemTemplate,
