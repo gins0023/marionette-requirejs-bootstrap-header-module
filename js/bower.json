@@ -1,0 +1,17 @@
+{
+  "name": "marionette_bootstrap_header_module",
+  "version": "1.0.0",
+  "homepage": "https://github.com/gins0023/marionette-requirejs-bootstrap-header-moduel",
+  "authors": [
+    "Charlie Ginsberg <cginsberg0023@gmail.com>"
+  ],
+  "description": "Header module built with twitter bootstrap styles on top of backbone marionette and leveraging requirejs amd'",
+  "main": "/js/modules/HeaderModule/app.js",
+  "keywords": [
+    "backbone",
+    "bootstrap",
+    "requirejs",
+    "marionette"
+  ],
+  "license": "MIT"
+}
