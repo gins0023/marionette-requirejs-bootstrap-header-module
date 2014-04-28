@@ -3,8 +3,7 @@ RequireJS + Backbone Marionette + Twitter Bootstrap Header Module
 
 This module provides easy navigation capabilities for your frontend app given a static or dynamically generated menu structure.  Uses bootstrap for look and feel, but could easily be stripped to use custom solution. 
 
-<h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+##Example
 
 ```javascript
 
