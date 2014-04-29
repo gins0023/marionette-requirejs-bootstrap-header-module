@@ -13,7 +13,7 @@
 		"location": "right"
 	},
 	{
-		"id": "3",
+		"id": "3",	
 		"uri": "services2",
 		"name": "Services 2",
 		"location": "left",
