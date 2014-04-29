@@ -30,7 +30,8 @@ define(["jquery", "underscore", "backbone", "marionette"], function($, _, Backbo
 				Backbone.history.start();
 
 				HeaderApp.start({
-					menuUrl: 'http://127.0.0.1'
+					menuUrl: 'http://127.0.0.1',
+					dev: true
 				});
 				
 			});
