@@ -7,7 +7,11 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 		_.extend(Header, {
 			startWithParent: false,
 			appRegion: 'headerRegion',
-			activeHeaderModel: null
+			activeHeaderModel: null,
+			Config: {
+				USE_STUB_DATA: false,
+				STUB_PATH: "js/modules/HeaderModule/stubs"
+			}
 		});
 
 		Header.navigate = function(route, options) {
@@ -79,6 +83,9 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 		 */
 		Header.addInitializer(function(options) {
 			_.extend(this, options);
+
+			if (this.dev !== undefined && this.dev === true) this.Config.USE_STUB_DATA = true;
+			
 			this.collection = new Collection([], {
 				url: this.menuUrl
 			});
