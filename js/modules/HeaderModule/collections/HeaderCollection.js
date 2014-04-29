@@ -1,5 +1,5 @@
 /*global define */
-define(['backbone', 'marionette', 'collections/BaseCollection', 'HeaderModule/models/HeaderModel', 'backbone.picky'], function(Backbone, Marionette, BaseCollection, HeaderModel) {
+define(['backbone', 'marionette', 'HeaderModule/collections/BaseCollection', 'HeaderModule/models/HeaderModel', 'backbone.picky'], function(Backbone, Marionette, BaseCollection, HeaderModel) {
 
 	return BaseCollection.extend({
 		model: HeaderModel,
