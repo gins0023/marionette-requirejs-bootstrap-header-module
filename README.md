@@ -39,7 +39,8 @@ define(["jquery", "underscore", "backbone", "marionette"], function($, _, Backbo
 				Backbone.history.start();
 
 				HeaderApp.start({
-					menuUrl: 'http://127.0.0.1'  //YOUR MENU API ENDPOINT HERE
+					menuUrl: 'http://127.0.0.1',
+					dev: true	//Set to true for test data, else will use menuUrl to get data
 				});
 				
 			});
