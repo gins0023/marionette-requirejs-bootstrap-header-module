@@ -1,0 +1,23 @@
+[{
+	"id": "1",
+	"uri": "services1",
+	"name": "Services 1",
+	"root": "Services",
+	"location": "left"
+}, {
+	"id": "2",
+	"uri": "logout",
+	"name": "Logout",
+	"location": "right"
+}, {
+	"id": "3",
+	"uri": "services2",
+	"name": "Services 2",
+	"location": "left",
+	"root": "Services"
+}, {
+	"id": "4",
+	"uri": "other",
+	"name": "Other",
+	"location": "left"
+}]
