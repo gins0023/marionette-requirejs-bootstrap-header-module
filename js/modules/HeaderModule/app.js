@@ -41,6 +41,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 						model.collection.trigger('reset');
 					}, this);
 
+					App.trigger('header:loaded'); //signal header loaded
 				});
 			},
 			/**
