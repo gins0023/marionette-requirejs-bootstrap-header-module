@@ -27,8 +27,6 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 					App[Header.appRegion].show(headers);
 
 					headers.on("itemview:navigate", function(childView, model) {
-						Header.controller.triggerEvents(model);
-
 						/**
 						 * Remove active class on all dropdowns
 						 */
@@ -39,6 +37,11 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 						 */
 						model.select();
 						model.collection.trigger('reset');
+
+						/**
+						 * Wait until header refreshed to trigger events
+						 */
+						Header.controller.triggerEvents(model);
 					}, this);
 
 					App.trigger('header:loaded'); //signal header loaded
