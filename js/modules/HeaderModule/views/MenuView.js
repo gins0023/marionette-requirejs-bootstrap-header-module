@@ -32,7 +32,7 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 					el = current.find("#menu-group-"+root);
 
 				if (el.length === 0) {
-					current = current.append(dropdownItemTemplate(itemView.model.toJSON())).find("ul");
+					current = current.append(dropdownItemTemplate(itemView.model.toJSON())).find("ul:last");
 				} else {
 					current = el.find('ul');
 				}
