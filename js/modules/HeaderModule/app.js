@@ -65,6 +65,7 @@ define(["jquery", "backbone", "marionette", "app", "HeaderModule/collections/Hea
 			triggerEvents: function(model) {
 				//Don't fire event if same nav element clicked
 				if (this.activeHeaderModel !== null && this.activeHeaderModel === model) {
+					App.trigger('navigate:currentMenuClick'); //might be necessary because of template re-render
 					return;
 				}
 
