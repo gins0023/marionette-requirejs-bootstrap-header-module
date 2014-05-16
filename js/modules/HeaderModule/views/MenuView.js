@@ -28,11 +28,14 @@ define(["backbone", "marionette", "HeaderModule/app", "HeaderModule/views/MenuIt
 			}
 				
 			if (modelRoot !== undefined && modelRoot !== null) {
-				var root = modelRoot.toLowerCase().replace("/ /g", "-"),
-					el = current.find("#menu-group-"+root);
+				var root = modelRoot.toLowerCase().replace(/\s+/g, "-"),
+					el = current.find("#menu-group-"+root),
+					data = itemView.model.toJSON();
+
+				data.rootNoSpaces = root;
 
 				if (el.length === 0) {
-					current = current.append(dropdownItemTemplate(itemView.model.toJSON())).find("ul:last");
+					current = current.append(dropdownItemTemplate(data)).find("ul:last");
 				} else {
 					current = el.find('ul');
 				}
