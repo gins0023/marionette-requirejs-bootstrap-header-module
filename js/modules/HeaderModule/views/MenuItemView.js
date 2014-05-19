@@ -7,6 +7,12 @@ define(["backbone", "marionette", "HeaderModule/app", "tpl!HeaderModule/template
 			"click a": "navigate"
 		},
 		navigate: function(e) {
+			var trigger = this.model.get("trigger");
+
+			if (trigger !== undefined && trigger === false) {
+				e.preventDefault();
+			}
+
 			this.trigger("navigate", this.model);
 		},
 		/**
